@@ -21,15 +21,12 @@ const bookSchema = new mongoose.Schema({
   publication_date: {
     type: Date,
     validate(value) {
-        if (value > new Date().now()){
-        if (value > new Date().now()){
-            throw new Error('Cannot be a future date')
-        }
-    }
-  }
-}
-}
-)
+      if (value > new Date()) {
+        throw new Error('Cannot be a future date')
+      }
+    },
+  },
+})
 
 const Book = mongoose.model('Book', bookSchema)
 
