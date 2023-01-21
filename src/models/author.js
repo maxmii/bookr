@@ -1,24 +1,21 @@
 const mongoose = require('mongoose')
 
-const bookSchema = new mongoose.Schema({
-  book_name: {
+const authorSchema = new mongoose.Schema({
+  first_name: {
     type: String,
     required: true,
     trim: true,
+    maxLength: 100,
   },
-  author: {
+  last_name: {
     type: String,
     required: true,
     trim: true,
-    maxLength: 200,
+    maxLength: 100,
   },
-  category: {
-    type: String,
-    trim: true,
-    required: false,
-  },
-  publication_date: {
+  date_of_birth: {
     type: Date,
+    required: true,
     validate(value) {
       if (value > new Date()) {
         throw new Error('Cannot be a future date')
@@ -27,6 +24,6 @@ const bookSchema = new mongoose.Schema({
   },
 })
 
-const Book = mongoose.model('Book', bookSchema)
+const Author = mongoose.model('Author', authorSchema)
 
-module.exports = Book
+module.exports = Author
